@@ -1,0 +1,78 @@
+﻿@model HelthSystem.ViewModels.AppointmentVM.DetailsAppointmentVM
+
+<h2>Set Approve</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <dl class="dl-horizontal">
+
+        <dt>
+           Name:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.FirstName)
+            @Html.DisplayFor(model => model.Patient.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.Adress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.Adress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+    </dl>
+
+
+    <div class="form-horizontal">
+       
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsApproved, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="IsApproved" name="IsApproved">
+                    <option value="Pending" selected>Pending</option>
+                    <option value="Confirmed">Confirmed</option>
+                    <option value="Decline">Decline</option>
+                </select> 
+                @Html.ValidationMessageFor(model => model.IsApproved, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back", "Index")
+</div>

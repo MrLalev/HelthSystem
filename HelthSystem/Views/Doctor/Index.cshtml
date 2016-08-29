@@ -1,0 +1,49 @@
+﻿@model HelthSystem.ViewModels.DoctorVM.ListDoctorsVM
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<h2>Doctors</h2>
+@if (HelthSystem.Models.AuthenticationManager.LoggedUser.AdminRole == true)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+@Html.Partial("~/Views/Shared/_Search.cshtml", Model.Filter)
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>E-mail</th>
+        <th>Position</th>
+        <th>Phone</th>
+        <th>Admin</th>
+        <th>Options</th>
+    </tr>
+
+@foreach (var item in Model.Items) {
+    <tr>
+        <td>@item.User.FirstName  @item.User.LastName</td>
+        <td>@item.User.Email</td>
+        <td>@item.Position</td>
+        <td>@item.User.Phone</td>
+        <td>@item.User.AdminRole</td>
+        <td>
+            @if (HelthSystem.Models.AuthenticationManager.LoggedUser.AdminRole == true)
+            {
+                @Html.ActionLink(" Edit |", "Edit", new { id = item.UserId });
+                @Html.ActionLink(" Delete |", "Delete", new { id = item.UserId })
+            }
+                
+            @Html.ActionLink(" Details ", "Details", new { id = item.UserId })
+               
+      
+        </td>
+</tr>
+}
+
+</table>
+@Html.Partial("~/Views/Shared/_Pager.cshtml", Model.Pager)

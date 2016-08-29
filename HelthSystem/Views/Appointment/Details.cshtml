@@ -1,0 +1,121 @@
+﻿@model HelthSystem.ViewModels.AppointmentVM.DetailsAppointmentVM
+
+@{
+    DataAccess.Repo.DoctorRepo doctorRepo = new DataAccess.Repo.DoctorRepo();
+    Doctor logedDoctor = doctorRepo.GetById(HelthSystem.Models.AuthenticationManager.LoggedUser.Id);
+}
+
+<h2>Details Appointment </h2>
+<div>
+    @if (logedDoctor == null)
+    {
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Doctor Name:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Doctor.User.FirstName)
+                @Html.DisplayFor(model => model.Doctor.User.LastName)
+            </dd>
+            <dt>
+                Doctor Phone:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Doctor.User.Phone)
+            </dd>
+            <dt>
+                Doctor E-mail:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Doctor.User.Email)
+            </dd>
+            <dt>
+                Doctor Specialization:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Doctor.Position)
+            </dd>
+            <dt>
+                Doctor Adress:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Doctor.User.Adress)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsApproved)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IsApproved)
+            </dd>
+
+        </dl>
+    }
+    else
+    {
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Patient Name:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Patient.FirstName)
+                @Html.DisplayFor(model => model.Patient.LastName)
+            </dd>
+            <dt>
+                Patient Phone:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Patient.Phone)
+            </dd>
+            <dt>
+                Patient E-mail:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Patient.Email)
+            </dd>
+            <dt>
+                Patient Adress:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Patient.Adress)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsApproved)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IsApproved)
+            </dd>
+
+        </dl>
+    }
+
+</div>
+<p>
+    @Html.ActionLink("Back", "Index")
+</p>

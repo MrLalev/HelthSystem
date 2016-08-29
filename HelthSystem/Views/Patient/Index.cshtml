@@ -1,0 +1,31 @@
+﻿@model HelthSystem.ViewModels.UserVM.ListUserVM
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<h2>Users</h2>
+<p>
+    @Html.ActionLink("Create New", "Create","Home")
+</p>
+@Html.Partial("~/Views/Shared/_Search.cshtml", Model.Filter)
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>E-mail</th>
+        <th>Phone</th>
+        <th>Adress</th>
+        <th>Options</th>
+    </tr>
+
+@foreach (var item in Model.Items) {
+    <tr>
+        <td>@item.FirstName @item.LastName</td>
+        <td>@item.Email</td>
+        <td>@item.Phone</td>
+        <td>@item.Adress</td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new {  id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+@Html.Partial("~/Views/Shared/_Pager.cshtml", Model.Pager)
